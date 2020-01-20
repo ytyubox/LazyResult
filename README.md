@@ -22,6 +22,6 @@ File > Swift Packages > Add Package Dependency
 ##### Add As A Dependency In Package.swift:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/ytyubox/LazyResult", from: "0.1.0"),
+    .package(url: "https://github.com/ytyubox/LazyResult", from: "1.0.0"),
 ],
 ```
