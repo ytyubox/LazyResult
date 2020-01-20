@@ -2,14 +2,19 @@ import XCTest
 @testable import LazyResult
 
 final class LazyResultTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(LazyResult().text, "Hello, World!")
+    func testLazyResultisLazy() {
+		var target:Int? = nil
+		var lazyResult = LazyResult<Int, Error> { () -> Int in
+			let success = 1
+			target = success
+			return success
+		}
+		XCTAssertNil(target)
+		let successValue = try! lazyResult.get()
+		XCTAssertEqual(target, successValue)
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testLazyResultisLazy", testLazyResultisLazy),
     ]
 }
