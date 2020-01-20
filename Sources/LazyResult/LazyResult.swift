@@ -8,6 +8,15 @@ public enum LazyResult<Success,Failure> where Failure: Error{
 	/// A failure, storing a `Failure` value.
 	case failure(Failure)
 	
+	public mutating func perform() {
+		guard case .unInit(let body) = self else {return}
+		do {
+			self = .success(try body())
+		}catch {
+			self = .failure(error as! Failure)
+		}
+		
+	}
 	/// Returns a new Swift.Result, and change to .success if self is .unInit
 	public
 	mutating
